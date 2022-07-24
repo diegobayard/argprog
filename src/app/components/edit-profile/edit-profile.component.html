@@ -1,0 +1,167 @@
+<!-- NAVBAR -->
+
+<nav class="navbar fixed-top navbar-dark bg-primary p-2">
+    <h1 class="h4 text-light">Portfolio editable</h1>
+    <div class="text-right">
+        <li class="nav-item" ngbDropdown>
+            <a class="nav-link text-light" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button"></a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+                <a ngbDropdownItem href="#" routerLink="/login">Cerrar sesión</a>
+                <a ngbDropdownItem href="#" routerLink="/list-persons">Ver perfiles</a>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Cancelar</a>
+            </div>
+        </li>
+    </div>
+</nav>
+
+<!-- PROFILE -->
+
+<section class="card profile top-section-high" id="profile">
+    <div class="bg" id="background">
+        <img class="bgimg" id="banner" src="{{person.banner || 'assets/images/banner.jpg'}}" alt="">
+        <app-edit-banner [banner]="person.banner" (changeBanner)="reLoad()"></app-edit-banner>
+    </div>
+    <div class="bg" id="avatar">
+        <img class="bgimg" src="{{person.avatar || 'assets/images/avatar.webp'}}">
+        <app-edit-avatar [avatar]="person.avatar" (changeAvatar)="reLoad()"></app-edit-avatar>
+    </div>
+    <div class="row m-3">
+        <div class="col-12">
+            <h2 class="d-inline-block">{{person.fullName}}</h2>
+            <app-edit-name [name]="person.fullName" (changeName)="reLoad()"></app-edit-name><br>
+            <span class="h5">{{person.title || 'Título'}}</span>
+            <app-edit-title [title]="person.title" (changeTitle)="reLoad()"></app-edit-title><br>
+            <span class="h5">{{person.domicile || 'Domicilio'}}</span>
+            <app-edit-domicile [domicile]="person.domicile" (changeDomicile)="reLoad()">
+            </app-edit-domicile><br>
+            <span class="h5"><a href="mailto:{{person.contact}}">{{person.contact}}</a></span>
+            <app-edit-contact [contact]="person.contact" (changeContact)="reLoad()"></app-edit-contact>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="card">
+    <div class="m-3">
+        <app-edit-about [about]="person.about" (changeAbout)="reLoad()"></app-edit-about>
+        <h2 class="section-title">Acerca de</h2>
+    </div>
+    <div *ngIf="person.about != null" class="container-fluid">
+        <div class="row m-4 p-1">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <p class="fs-5">{{person.about}}</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section class="card">
+    <div class="m-3">
+        <app-new-experience (newExperience)="reLoad()"></app-new-experience>
+        <h2 class="section-title">Experiencia</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-3" *ngFor="let experience of person.experiences; let i = index">
+            <div class="col-4 p-1 text-end">
+                <img src="{{experience.logo || 'assets/images/logo.png'}}" alt="" class="logo">
+            </div>
+            <div class="col-5 p-1 ml-1 mr-1 text-center">
+                <p class="h5">{{experience.company}}</p>
+                <p class="h5">{{experience.position}}</p>
+                <p class="h5">{{experience.startDate}}</p>
+                <p class="h5">{{experience.endDate}}</p>
+            </div>
+            <div class="col-3 p-1 text-start">
+                <i class="fas fa-lg fa-trash m-3" (click)="deleteExperience(experience.id, i)"></i>
+                <app-edit-experience [experience]="experience"></app-edit-experience>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STUDIES -->
+
+<section class="card">
+    <div class="m-3">
+        <app-new-study (newStudy)="reLoad()"></app-new-study>
+        <h2 class="section-title">Estudios</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let study of person.studies; let i = index">
+            <div class="col-3 p-1 text-end">
+                <img src="{{study.logo || 'assets/images/logo.png'}}" alt="" class="logo">
+            </div>
+            <div class="col-6 p-1 ml-1 mr-1 text-center">
+                <p class="h5">{{study.institution}}</p>
+                <p class="h5">{{study.name}}</p>
+                <p class="h5">{{study.startDate}}</p>
+                <p class="h5">{{study.endDate}}</p>
+            </div>
+            <div class="col-3 p-1 text-start">
+                <i class="fas fa-lg fa-trash m-3" (click)="deleteStudy(study.id)"></i>
+                <app-edit-study [study]="study"></app-edit-study>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+
+<section class="card">
+    <div class="m-3">
+        <app-new-skill (newSkill)="reLoad()"></app-new-skill>
+        <h2 class="section-title">Hard & soft skills</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let skill of person.skills; let i = index">
+            <div class="col-2"></div>
+            <div class="col-7 p-1">
+                <div class="progress" style="height: 4vh;">
+                    <div class="progress-bar" role="progressbar" [style.width]="skill.progress"
+                        [attr.aria-valuenow]="skill.progress" aria-valuemin="0" aria-valuemax="100">
+                        <p class="h5 text-left ml-3">{{skill.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 p-1 text-start">
+                <i class="fas fa-lg fa-trash m-3" (click)="deleteSkill(skill.id)"></i>
+                <app-edit-skill [skill]="skill"></app-edit-skill>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section class="card bottom-section">
+    <div class="m-3">
+        <app-new-project (newProject)="reLoad()"></app-new-project>
+        <h2 class="section-title">Proyectos</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let project of person.projects; let i = index">
+            <div class="col-2"></div>
+            <div class="col-7 p-1">
+                <a href="{{project.url}}">
+                    <p class="h4">{{project.name}}</p>
+                </a>
+                <p class="h5">{{project.description}}</p>
+            </div>
+            <div class="col-3 p-1 text-start">
+                <i class="fas fa-lg fa-trash m-3" (click)="deleteProject(project.id)"></i>
+                <app-edit-project [project]="project"></app-edit-project>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="container-fluid fixed-bottom navbar-light bg-light text-center">
+    <p class="navbar-brand">Made by <a href="https://github.com/hitzseb">hitzseb</a></p>
+</footer>

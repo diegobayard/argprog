@@ -1,0 +1,28 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Agregar experiencia</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form">
+            <div class="mb-3">
+                <label for="company">Empresa</label>
+                <input class="form-control" formControlName="company"><br>
+                <label for="logo">Logo</label>
+                <input class="form-control" formControlName="logo"><br>
+                <label for="position">Puesto</label>
+                <input class="form-control" formControlName="position"><br>
+                <label for="startDate">Inicio</label>
+                <input class="form-control" formControlName="startDate"><br>
+                <label for="endDate">Cese</label>
+                <input class="form-control" formControlName="endDate"><br>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Cancelar</button>
+        <button type="button" class="btn btn-outline-primary" (click)="addExperience()">Guardar</button>
+    </div>
+</ng-template>
+
+<i class="fas fa-2x fa-plus-circle float-end m-1" (click)="open(content)"></i>

@@ -1,0 +1,38 @@
+<!-- NAVBAR -->
+
+<nav class="navbar fixed-top navbar-dark bg-primary p-2">
+    <h1 class="h4 text-light">Ingresa para editar tu portfolio</h1>
+</nav>
+
+<!-- LOGIN -->
+
+<div class="container top-section-low">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <form [formGroup]="form" (ngSubmit)="onLogin()">
+                <div class="mb-3">
+                    <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                </div>
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                </div>
+            </form>
+            <div class="d-grid">
+                <button class="btn btn-secondary btn-block" routerLink="/register">Registrarse</button>
+            </div>
+        </div>
+    </div>
+    <div class="text-center m-5">
+        <a routerLink="/list-persons" (click)="show()"><h3>Ver perfiles</h3></a>
+        <div *ngIf="isLoading" class="spinner-border text-primary"></div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer class="container-fluid fixed-bottom navbar-light bg-light text-center">
+    <p class="navbar-brand">Made by <a href="https://github.com/hitzseb">hitzseb</a></p>
+</footer>

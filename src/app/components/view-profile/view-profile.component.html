@@ -1,0 +1,137 @@
+<nav class="navbar fixed-top navbar-dark bg-primary p-2">
+    <h1 class="h4 text-light">Portfolio de {{person.fullName.split(' ')[0]}}</h1>
+    <div class="text-right">
+        <li class="nav-item" ngbDropdown>
+            <a class="nav-link text-light" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button"></a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
+                <a ngbDropdownItem href="#" routerLink="/login">Iniciar sesión</a>
+                <a ngbDropdownItem href="#" routerLink="/list-persons">Ver perfiles</a>
+                <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Cancelar</a>
+            </div>
+        </li>
+    </div>
+</nav>
+
+<!-- PROFILE -->
+
+<section class="card profile top-section-high" id="profile">
+    <div id="background">
+        <img id="banner" src="{{person.banner || 'assets/images/banner.jpg'}}" alt="">
+    </div>
+    <div id="avatar">
+        <img src="{{person.avatar || 'assets/images/avatar.webp'}}">
+    </div>
+    <div class="row m-3">
+        <div class="col-12">
+            <h2>{{person.fullName}}</h2>
+            <p class="h5">{{person.title}}</p>
+            <p class="h5">{{person.domicile}}</p>
+            <p class="h5"><a href="mailto:{{person.contact}}">{{person.contact}}</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+
+<section *ngIf="person.about != null" class="card">
+    <div class="m-3">
+        <h2 class="section-title">Acerca de</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4 p-1">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <p class="fs-5">{{person.about}}</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section *ngIf="person.experiences.length > 0" class="card">
+    <div class="m-3">
+        <h2 class="section-title">Experiencia</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let experience of person.experiences; let i = index">
+            <div class="col-3 p-1 text-end">
+                <img src="{{experience.logo || 'assets/images/logo.png'}}" alt="" class="logo">
+            </div>
+            <div class="col-6 p-1 ml-1 mr-1 text-center">
+                <p class="h5">{{experience.company}}</p>
+                <p class="h5">{{experience.position}}</p>
+                <p class="h5">{{experience.startDate}}</p>
+                <p class="h5">{{experience.endDate}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STUDIES -->
+
+<section *ngIf="person.studies.length > 0" class="card">
+    <div class="m-3">
+        <h2 class="section-title">Estudios</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let study of person.studies; let i = index">
+            <div class="col-3 p-1 text-end">
+                <img src="{{study.logo || 'assets/images/logo.png'}}" alt="" class="logo">
+            </div>
+            <div class="col-6 p-1 ml-1 mr-1 text-center">
+                <p class="h5">{{study.institution}}</p>
+                <p class="h5">{{study.name}}</p>
+                <p class="h5">{{study.startDate}}</p>
+                <p class="h5">{{study.endDate}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+
+<section *ngIf="person.skills.length > 0" class="card">
+    <div  class="m-3">
+        <h2 class="section-title">Hard & soft skills</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let skill of person.skills; let i = index">
+            <div class="col-2"></div>
+            <div class="col-7 p-1">
+                <div class="progress" style="height: 4vh;">
+                    <div class="progress-bar" role="progressbar" [style.width]="skill.progress"
+                        [attr.aria-valuenow]="skill.progress" aria-valuemin="0" aria-valuemax="100">
+                        <p class="h5 text-left ml-3">{{skill.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section *ngIf="person.projects.length > 0" class="card bottom-section">
+    <div class="m-3">
+        <h2 class="section-title">Proyectos</h2>
+    </div>
+    <div class="container-fluid">
+        <div class="row m-4" *ngFor="let project of person.projects; let i = index">
+            <div class="col-2"></div>
+            <div class="col-7 p-1">
+                <a href="{{project.url}}">
+                    <p class="h4">{{project.name}}</p>
+                </a>
+                <p class="h5">{{project.description}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="container-fluid fixed-bottom navbar-light bg-light text-center">
+    <p class="navbar-brand">Made by <a href="https://github.com/hitzseb">hitzseb</a></p>
+</footer>

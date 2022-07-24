@@ -1,0 +1,24 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Editar proyecto</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form">
+            <div class="mb-3">
+                <label for="name">Proyecto</label>
+                <input type="text" class="form-control" formControlName="name"><br>
+                <label for="url">Url</label>
+                <input class="form-control" formControlName="url"><br>
+                <label for="description">Descripción</label>
+                <textarea class="form-control" rows="2" formControlName="description"></textarea><br>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Cancelar</button>
+        <button type="button" class="btn btn-outline-primary" (click)="editProject()">Guardar</button>
+    </div>
+</ng-template>
+
+<i class="fas fa-lg fa-edit m-3" id="edit-profile-icon" (click)="open(content)"></i>

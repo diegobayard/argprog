@@ -1,0 +1,24 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cambiar avatar</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="avatar-url">Url de tu nuevo avatar</label>
+        <div class="input-group">
+          <input id="avatar-url" class="form-control" placeholder="{{avatar}}" formControlName="avatar">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Cancelar</button>
+    <button type="button" class="btn btn-outline-primary" (click)="saveAvatar()">Guardar</button>
+  </div>
+</ng-template>
+
+<div class="overlay">
+  <i class="fas fa-3x fa-edit" (click)="open(content)"></i>
+</div>
