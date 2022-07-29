@@ -13,7 +13,7 @@ import { Study } from '../interfaces/study';
 
 export class ProfileService {
 
-  API_URL: string = 'http://localhost:8080'
+  API_URL: string = 'https://mighty-lowlands-81769.herokuapp.com/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -46,7 +46,7 @@ export class ProfileService {
   editContact (contact: string) {
     return this.httpClient.put(`${this.API_URL}/edit-contact`, {}, {params:{contact: `${contact}`}})
   }
-  
+
   editAbout (about: string) {
     return this.httpClient.put(`${this.API_URL}/edit-about`, {}, {params:{about: `${about}`}})
   }

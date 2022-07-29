@@ -8,7 +8,7 @@ import { Person } from '../interfaces/person';
 })
 export class ViewProfileService {
 
-  API_URL: string = 'http://localhost:8080'
+  API_URL: string = 'https://mighty-lowlands-81769.herokuapp.com/'
 
   constructor(private httpClient: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
 
-  API_URL: string = 'http://localhost:8080'
+  API_URL: string = 'https://mighty-lowlands-81769.herokuapp.com/'
   ACCES_TOKEN: any
 
   constructor(private httpClient: HttpClient, private router:Router) { }
@@ -22,5 +22,5 @@ export class AuthService {
       window.localStorage.setItem("ACCES_TOKEN", res.jwt), this.router.navigateByUrl('/edit-profile')
     })
   }
-  
+
 }

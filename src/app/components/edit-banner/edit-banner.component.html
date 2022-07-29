@@ -1,12 +1,12 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Cambiar banner</h4>
+        <h4 class="modal-title" id="modal-basic-title">Cambiar portada</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <form [formGroup]="form">
             <div class="mb-3">
-                <label for="banner-url">Url de tu nuevo banner</label>
+                <label for="banner-url">Url de tu nueva portada</label>
                 <div class="input-group">
                     <input id="banner-url" class="form-control" placeholder="{{banner}}" formControlName="banner">
                 </div>
